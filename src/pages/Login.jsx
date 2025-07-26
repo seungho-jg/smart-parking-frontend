@@ -1,14 +1,26 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../api/auth";
 
 function Login() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const data = {id, password};
+    try {
+      await login(data);
+      navigate("/");
+    } catch (error) {
+      alert("로그인에 실패했습니다.");
+    }
+    
+  }
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="w-full max-w-xs">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form onSubmit={onSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="id">
               아이디
@@ -38,7 +50,7 @@ function Login() {
           <div className="flex items-center justify-between">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="button"
+              type="submit"
             >
               로그인
             </button>
