@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getParkingSpaces } from '../api/parking';
 
-const FLOORS = [1, 2, 3];
+const FLOORS = ["1", "2", "3"];
 const SPACES_PER_ROW = 4;
 
 function Home() {
@@ -16,7 +16,13 @@ function Home() {
     const fetchdata = async () => {
       try {
         const response = await getParkingSpaces();
-        setParkingSpaces(response.data);
+        console.log(response)
+        if (response.data.success) {
+          console.log("fetch 성공");
+          setParkingSpaces(response.data.spaces);  
+          console.log(response.data.spaces);
+        }
+        
       } catch (error) {
         setError('주차 정보를 불러오는 데 실패했습니다.');
         console.error(error);

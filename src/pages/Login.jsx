@@ -10,7 +10,8 @@ function Login() {
     e.preventDefault();
     const data = {id, password};
     try {
-      await login(data);
+      const response = await login(data);
+      console.log(response);
       navigate("/");
     } catch (error) {
       alert("로그인에 실패했습니다.");
