@@ -30,7 +30,12 @@ function Home() {
         setLoading(false);
       }
     }
+    
     fetchdata();
+    
+    const interval = setInterval(fetchdata, 5000); // 5초 마다 새로고침
+    
+    return () => clearInterval(interval);
   }, []);
 
   const getStatusColor = (status) => {
