@@ -10,7 +10,8 @@ function MyPage() {
     const fetchHistory = async () => {
       try {
         const response = await getMyHistory();
-        setParkingHistory(response.data);
+        console.log(response);
+        setParkingHistory(response.data.records);
       } catch (error) {
         setError('주차 이력을 불러오는 데 실패했습니다.');
         console.error(error);
@@ -42,10 +43,10 @@ function MyPage() {
             {parkingHistory.length > 0 ? (
               parkingHistory.map((record) => (
                 <tr key={record.id} className="text-center">
-                  <td className="py-2 px-4 border-b">{record.space_id}</td>
-                  <td className="py-2 px-4 border-b">{new Date(record.entry_time).toLocaleString()}</td>
-                  <td className="py-2 px-4 border-b">{record.exit_time ? new Date(record.exit_time).toLocaleString() : '-'}</td>
-                  <td className="py-2 px-4 border-b">{`${record.parking_fee.toLocaleString()}원`}</td>
+                  <td className="py-2 px-4 border-b">{record.spaceName}</td>
+                  <td className="py-2 px-4 border-b">{new Date(record.entryTime).toLocaleString()}</td>
+                  <td className="py-2 px-4 border-b">{record.exitTime ? new Date(record.exitTime).toLocaleString() : '-'}</td>
+                  <td className="py-2 px-4 border-b">{`${record.parkingFee.toLocaleString()}원`}</td>
                 </tr>
               ))
             ) : (

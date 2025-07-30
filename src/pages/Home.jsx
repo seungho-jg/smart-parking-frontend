@@ -42,9 +42,9 @@ function Home() {
     switch (status) {
       case 'AVAILABLE':
         return 'bg-green-500 hover:bg-green-600';
-      case 'RESERVED':
-        return 'bg-red-500 cursor-not-allowed';
       case 'OCCUPIED':
+        return 'bg-red-500 cursor-not-allowed';
+      case 'RESERVED':
         return 'bg-yellow-500 cursor-not-allowed';
       default:
         return 'bg-gray-500';
