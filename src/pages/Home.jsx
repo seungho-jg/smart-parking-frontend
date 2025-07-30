@@ -40,11 +40,11 @@ function Home() {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'available':
+      case 'AVAILABLE':
         return 'bg-green-500 hover:bg-green-600';
-      case 'occupied':
+      case 'RESERVED':
         return 'bg-red-500 cursor-not-allowed';
-      case 'reserved':
+      case 'OCCUPIED':
         return 'bg-yellow-500 cursor-not-allowed';
       default:
         return 'bg-gray-500';
@@ -52,7 +52,7 @@ function Home() {
   };
 
   const handleSpaceClick = (space) => {
-    if (space.status === 'available') {
+    if (space.status === 'AVAILABLE') {
       navigate('/reservations', { state: { spaceId: space.id, spaceName: space.name } });
     }
   };
@@ -73,7 +73,7 @@ function Home() {
           <div
             key={space.id}
             className={`w-16 h-24 m-1 flex flex-col items-center justify-center rounded-lg text-white transition-colors ${getStatusColor(space.status)} ${
-              space.status === 'available' ? 'cursor-pointer' : ''
+              space.status === 'AVAILABLE' ? 'cursor-pointer' : ''
             }`}
             onClick={() => handleSpaceClick(space)}
           >

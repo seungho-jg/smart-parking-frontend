@@ -9,9 +9,10 @@ function Reservations() {
   const handleReservation = async (e) => {
     e.preventDefault();
     try {
-      const result = await reserveParkingSpace(spaceId);
+      const result = await reserveParkingSpace( "reserve", spaceId);
       if(result.success) {
         alert(`${spaceName} 공간이 예약되었습니다.`);
+        navigate('/');
       }
         alert(error.message ||  '예약에 실패했습니다.');
       navigate('/');
@@ -33,7 +34,7 @@ function Reservations() {
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            예약 확정
+            예약하기
           </button>
         </form>
       ) : (
